@@ -29,7 +29,8 @@ const DeliveryDetails = lazy(() => import('./pages/deliveries/details/DeliveryDe
 const OrderDetails = lazy(() => import('./pages/orders/details/OrderDetails'));
 const UserDetails = lazy(() => import('./pages/admin/users/details/UserDetails'));
 const WarehouseDetails = lazy(() => import('./pages/admin/warehouses/details/WarehouseDetails'));
-
+const Produtividade = lazy(() => import('./pages/admin/produtividadePorOperador/Produtividade'));
+const TempoMedioResolucao = lazy(() => import ('./pages/admin/tempoMedioResolucao/TempoMedioResolucao'));
 @inject('AppStore')
 @observer
 class Routes extends Component {
@@ -138,16 +139,16 @@ class Routes extends Component {
               <Switch>
                 <Route
                   exact
-                  path="/admin/usuarios/detalhes"
+                  path="/produtividadeporoperador"
                   component={(props) => (
-                    <UserDetails {...props} />
+                    <Produtividade {...props} />
                   )}
                 />
                 <Route
                   exact
-                  path="/admin/cds/detalhes"
+                  path="/tempomedioresolucao"
                   component={(props) => (
-                    <WarehouseDetails {...{ ...props, isMobile }} />
+                    <TempoMedioResolucao {...{ ...props, isMobile }} />
                   )}
                 />
                 <Route

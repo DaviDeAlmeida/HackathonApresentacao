@@ -10,10 +10,13 @@ import {
   Logo,
 } from './styles';
 
+import LogoDelage from '../header/logodelage.png';
+
 const Header = () => (
   <Wrapper>
     <Container>
-      <Logo onClick={() => history.push('/')} />
+      {/* <Logo onClick={() => history.push('/')} /> */}
+      <img src={LogoDelage} style={{width: '210px'}} />
       {/* <GlobalSearch />
       <UserContext /> */}
     </Container>

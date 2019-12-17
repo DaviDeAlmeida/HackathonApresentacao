@@ -81,11 +81,18 @@ class Routes extends Component {
             <Switch>
               <Route
                 exact
+                path={['/', '/admin']}
+                component={(props) => (
+                  <Admin {...{ ...props, isMobile }} />
+                )}
+              />
+              {/* <Route
+                exact
                 path={['/', '/pedidos']}
                 component={(props) => (
                   <Orders {...{ ...props, isMobile }} />
                 )}
-              />
+              /> */}
               <Route
                 exact
                 path="/entregas"

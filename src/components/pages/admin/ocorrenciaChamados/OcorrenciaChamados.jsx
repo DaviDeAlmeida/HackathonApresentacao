@@ -44,7 +44,7 @@ class OcorrenciaChamados extends PureComponent {
 
     ];
 
-    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+    const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#DD8042', '#CC8042'];
 
     const renderActiveShape = (props) => {
       const RADIAN = Math.PI / 180;

@@ -35,7 +35,7 @@ class Produtividade extends Component {
 
     return (
       <div>
-        {lista && (
+        {lista ? (
           <div>
             <Card title="Produtividade x Operador - 01/09/2019 à 15/12/2019">
               <LineChart
@@ -55,7 +55,13 @@ class Produtividade extends Component {
               </LineChart>
             </Card>
           </div>
-        )}
+        )
+          : (
+            <div>
+              <h4>Suporte Delage</h4>
+              <p>Por favor, carregue a planilha.</p>
+            </div>
+          )}
 
       </div>
     );

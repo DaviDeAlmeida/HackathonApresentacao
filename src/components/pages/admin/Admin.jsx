@@ -5,11 +5,11 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
+import { observer, inject } from 'mobx-react';
 import { nextTick } from '../../../utils';
 import { pageView } from '../../../analytics';
 import PageLayout from '../../common/layout/pageLayout/PageLayout';
 
-import {observer, inject} from 'mobx-react';
 
 import {
   Menu,
@@ -24,6 +24,7 @@ import {
 const Produtividade = lazy(() => import('./produtividadePorOperador/Produtividade'));
 const TempoMedioResolucao = lazy(() => import('./tempoMedioResolucao/TempoMedioResolucao'));
 const OcorrenciaChamados = lazy(() => import('./ocorrenciaChamados/OcorrenciaChamados'));
+const AberturaPorFechamento = lazy(() => import('./aberturaPorFechamento/AberturaPorFechamento'));
 
 
 @inject('AppStore')
@@ -93,12 +94,12 @@ class Admin extends Component {
             Abertura x Resolução
           </MenuItem> */}
 
-<div style={{marginBottom: 20}}>
-<input
-          type="file"
-          onChange={(e) => this.receiveFile(e)}
-        />
-</div>
+          <div style={{ marginBottom: 20 }}>
+            <input
+              type="file"
+              onChange={(e) => this.receiveFile(e)}
+            />
+          </div>
 
           <MenuItem
             to={`${url}/produtividadeporoperador`} // Produtividade por operador
@@ -113,10 +114,10 @@ class Admin extends Component {
             Tempo médio de resolução
           </MenuItem>
           <MenuItem
-            to={`${url}/aberturaxresolucao`}
-            selected={pathname === `${url}/aberturaxresolucao`}
+            to={`${url}/aberturaxfechamento`}
+            selected={pathname === `${url}/aberturaxfechamento`}
           >
-            Abertura x Resolução
+            Abertura x Fechamento
           </MenuItem>
           <MenuItem
             to={`${url}/chamadosporocorrencia`}
@@ -140,6 +141,13 @@ class Admin extends Component {
               path={`${url}/tempomedioresolucao`}
               component={(props) => (
                 <TempoMedioResolucao {...props} />
+              )}
+            />
+            <Route
+              exact
+              path={`${url}/aberturaxfechamento`}
+              component={(props) => (
+                <AberturaPorFechamento {...props} />
               )}
             />
             <Route

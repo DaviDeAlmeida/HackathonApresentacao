@@ -20,6 +20,8 @@ import {
 
 const Produtividade = lazy(() => import('./produtividadePorOperador/Produtividade'));
 const TempoMedioResolucao = lazy(() => import('./tempoMedioResolucao/TempoMedioResolucao'));
+const OcorrenciaChamados = lazy(() => import('./ocorrenciaChamados/OcorrenciaChamados'));
+
 
 class Admin extends Component {
   UNSAFE_componentWillMount = () => { // eslint-disable-line camelcase
@@ -99,7 +101,7 @@ class Admin extends Component {
               exact
               path={`${url}/cds`}
               component={(props) => (
-                <Produtividade {...props} />
+                <OcorrenciaChamados {...props} />
               )}
             />
             <Route

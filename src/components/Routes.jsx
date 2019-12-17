@@ -17,6 +17,7 @@ import SignInSilentCallback from './common/auth/signInSilentCallback/SignInSilen
 import { initializeGA } from '../analytics';
 import { isMobileDevice } from '../utils';
 import { roles } from '../modules/auth';
+import OcorrenciaChamados from './pages/admin/ocorrenciaChamados/OcorrenciaChamados';
 
 // Routes
 const Orders = lazy(() => import('./pages/orders/Orders'));
@@ -30,7 +31,7 @@ const OrderDetails = lazy(() => import('./pages/orders/details/OrderDetails'));
 const UserDetails = lazy(() => import('./pages/admin/users/details/UserDetails'));
 const WarehouseDetails = lazy(() => import('./pages/admin/warehouses/details/WarehouseDetails'));
 const Produtividade = lazy(() => import('./pages/admin/produtividadePorOperador/Produtividade'));
-const TempoMedioResolucao = lazy(() => import ('./pages/admin/tempoMedioResolucao/TempoMedioResolucao'));
+const TempoMedioResolucao = lazy(() => import('./pages/admin/tempoMedioResolucao/TempoMedioResolucao'));
 @inject('AppStore')
 @observer
 class Routes extends Component {
@@ -149,6 +150,13 @@ class Routes extends Component {
                   path="/tempomedioresolucao"
                   component={(props) => (
                     <TempoMedioResolucao {...{ ...props, isMobile }} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/chamadosporocorrencia"
+                  component={(props) => (
+                    <OcorrenciaChamados {...{ ...props, isMobile }} />
                   )}
                 />
                 <Route

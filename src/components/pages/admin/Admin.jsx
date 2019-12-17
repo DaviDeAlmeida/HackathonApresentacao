@@ -118,6 +118,12 @@ class Admin extends Component {
           >
             Abertura x Resolução
           </MenuItem>
+          <MenuItem
+            to={`${url}/chamadosporocorrencia`}
+            selected={pathname === `${url}/chamadosporocorrencia`}
+          >
+            Chamados por ocorrência
+          </MenuItem>
 
         </Menu>
         <Divider />
@@ -138,7 +144,7 @@ class Admin extends Component {
             />
             <Route
               exact
-              path={`${url}/cds`}
+              path={`${url}/chamadosporocorrencia`}
               component={(props) => (
                 <OcorrenciaChamados {...props} />
               )}

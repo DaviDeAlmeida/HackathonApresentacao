@@ -18,7 +18,6 @@ class UsersStore {
   @observable lista = '';
 
   @action setLista = (lista) => {
-    debugger;
     this.lista = lista;
   }
 

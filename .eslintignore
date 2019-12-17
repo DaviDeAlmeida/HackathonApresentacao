@@ -1,0 +1,17 @@
+dist/**
+*.json
+src/assets/**
+*.html
+package*.json
+yarn.lock
+stats.json
+styles.css
+polyfills.js
+*.scss
+*.md
+Jenkinsfile
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.svg

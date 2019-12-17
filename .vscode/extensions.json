@@ -1,0 +1,12 @@
+{
+  "recommendations": [
+    "msjsdiag.debugger-for-chrome",
+    "hookyqr.beautify",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "lihui.vs-color-picker",
+    "hookyqr.minify",
+    "wix.vscode-import-cost",
+    "wayou.vscode-todo-highlight"
+  ]
+}

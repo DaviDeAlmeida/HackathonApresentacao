@@ -15,8 +15,11 @@ import {
   Content,
 } from './styles';
 
-const Users = lazy(() => import('./users/Users'));
-const Warehouses = lazy(() => import('./warehouses/Warehouses'));
+// const Users = lazy(() => import('./users/Users'));
+// const Warehouses = lazy(() => import('./warehouses/Warehouses'));
+
+const Produtividade = lazy(() => import('./produtividadePorOperador/Produtividade'));
+const TempoMedioResolucao = lazy(() => import('./tempoMedioResolucao/TempoMedioResolucao'));
 
 class Admin extends Component {
   UNSAFE_componentWillMount = () => { // eslint-disable-line camelcase
@@ -36,26 +39,44 @@ class Admin extends Component {
     return (
       <PageLayout url={url}>
         <Helmet>
-          <title>Administração | AccuScheduler</title>
+          <title>Hackathon 2019</title>
         </Helmet>
         <Menu>
-          <MenuItem
-            to={`${url}/usuarios`}
+          {/* <MenuItem
+            to={`${url}/usuarios`} // Produtividade por operador
             selected={pathname === url || pathname === `${url}/usuarios`}
           >
-            Usuários
+            Produtividade por operador
           </MenuItem>
           <MenuItem
-            to={`${url}/cds`}
+            to={`${url}/cds`} // Abertura x Resolução
             selected={pathname === `${url}/cds`}
           >
-            Centros de distribuição
+            Abertura x Resolução
+          </MenuItem> */}
+          <MenuItem
+            to={`${url}/produtividadeporoperador`} // Produtividade por operador
+            selected={pathname === url || pathname === `${url}/produtividadeporoperador`}
+          >
+            Produtividade por operador
           </MenuItem>
           <MenuItem
-            to={`${url}/notificacoes`}
-            selected={pathname === `${url}/notificacoes`}
+            to={`${url}/tempomedioresolucao`} // Abertura x Resolução
+            selected={pathname === `${url}/tempomedioresolucao`}
           >
-            Notificações
+            Abertura x Resolução
+          </MenuItem>
+          <MenuItem
+            to={`${url}/aberturaxresolucao`}
+            selected={pathname === `${url}/aberturaxresolucao`}
+          >
+            Tempo médio de resolução
+          </MenuItem>
+          <MenuItem
+            to={`${url}/tempomedioresolucao`}
+            selected={pathname === `${url}/tempomedioresolucao`}
+          >
+            Demanda diária
           </MenuItem>
         </Menu>
         <Divider />
@@ -65,20 +86,27 @@ class Admin extends Component {
               exact
               path={url}
               component={(props) => (
-                <Users {...props} />
+                <Produtividade {...props} />
               )}
             />
             <Route
-              path={`${url}/usuarios`}
+              path={`${url}/tempomedioresolucao`}
               component={(props) => (
-                <Users {...props} />
+                <TempoMedioResolucao {...props} />
               )}
             />
             <Route
               exact
               path={`${url}/cds`}
               component={(props) => (
-                <Warehouses {...props} />
+                <Produtividade {...props} />
+              )}
+            />
+            <Route
+              exact
+              path={`${url}/cds`}
+              component={(props) => (
+                <Produtividade {...props} />
               )}
             />
           </Switch>

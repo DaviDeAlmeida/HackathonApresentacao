@@ -13,52 +13,52 @@ import {
 const PageLayout = inject('AppStore')(observer(({
   url,
   children,
-  AppStore: {
-    AuthStore: {
-      user: {
-        profile: {
-          role,
-        },
-      },
-    },
-  },
+  // AppStore: {
+  //   AuthStore: {
+  //     user: {
+  //       profile: {
+  //         role,
+  //       },
+  //     },
+  //   },
+  // },
 }) => {
   let links = [];
 
-  if (role === roles.admin || role === roles.analyst || role === roles.supplier) {
-    links = links.concat([
-      {
-        label: dictionary.t('header.orders'),
-        url: ['/', '/pedidos'],
-      },
-      {
-        label: dictionary.t('header.deliveries'),
-        url: '/entregas',
-      },
-    ]);
-  }
+  // if (role === roles.admin || role === roles.analyst || role === roles.supplier) {
+  //   links = links.concat([
+  //     {
+  //       label: dictionary.t('header.orders'),
+  //       url: ['/', '/pedidos'],
+  //     },
+  //     {
+  //       label: dictionary.t('header.deliveries'),
+  //       url: '/entregas',
+  //     },
+  //   ]);
+  // }
 
-  if (role === roles.admin || role === roles.analyst || role === roles.warehouse) {
-    links = links.concat([
-      {
-        label: 'Ocupação do CD',
-        url: '/ocupacao',
-      },
-    ]);
-  }
+  // if (role === roles.admin || role === roles.analyst || role === roles.warehouse) {
+  //   links = links.concat([
+  //     {
+  //       label: 'Ocupação do CD',
+  //       url: '/ocupacao',
+  //     },
+  //   ]);
+  // }
 
-  if (role === roles.admin) {
-    links = links.concat([
-      {
-        label: 'Administração',
-        url: '/admin',
-      },
-    ]);
-  }
+  // if (role === roles.admin) {
+  //   links = links.concat([
+  //     {
+  //       label: 'Administração',
+  //       url: '/admin',
+  //     },
+  //   ]);
+  // }
 
   return (
     <Wrapper>
-      <Navbar url={url} links={links} />
+      {/* <Navbar url={url} links={links} /> */}
       <Content>
         {children}
       </Content>

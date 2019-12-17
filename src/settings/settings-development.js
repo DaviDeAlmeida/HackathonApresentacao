@@ -2,7 +2,7 @@ export const DEFAULT_LANGUAGE = 'ptBr';
 export const ANALYTICS_UA = 'UA-147032999-1';
 
 // export const API_ORIGIN = 'http://191.232.172.163:32549';
-export const API_ORIGIN = 'http://localhost:5005';
+export const API_ORIGIN = 'http://localhost:44339';
 
 // export const ORIGIN = 'http://accuschedulerdev.z15.web.core.windows.net';
 export const ORIGIN = 'http://localhost:3000';

@@ -14,8 +14,8 @@ const Header = () => (
   <Wrapper>
     <Container>
       <Logo onClick={() => history.push('/')} />
-      <GlobalSearch />
-      <UserContext />
+      {/* <GlobalSearch />
+      <UserContext /> */}
     </Container>
   </Wrapper>
 );

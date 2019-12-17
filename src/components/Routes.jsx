@@ -38,41 +38,41 @@ class Routes extends Component {
   }
 
   render() {
-    const {
-      AppStore: {
-        AuthStore: {
-          loadUser,
-          isAuthenticated,
-          signInRedirect,
-          signInRedirectCallback,
-          signInSilentCallback,
-        },
-      },
-    } = this.props;
+    // const {
+    //   AppStore: {
+    //     AuthStore: {
+    //       loadUser,
+    //       isAuthenticated,
+    //       signInRedirect,
+    //       signInRedirectCallback,
+    //       signInSilentCallback,
+    //     },
+    //   },
+    // } = this.props;
 
-    if (!isAuthenticated) {
-      if (window.location.pathname.indexOf('/signin-redirect') !== -1) return <SignInCallback {...{ signInRedirectCallback }} />;
-      if (window.location.pathname.indexOf('/silent-renew') !== -1) return <SignInSilentCallback {...{ signInSilentCallback }} />;
+    // if (!isAuthenticated) {
+    //   if (window.location.pathname.indexOf('/signin-redirect') !== -1) return <SignInCallback {...{ signInRedirectCallback }} />;
+    //   if (window.location.pathname.indexOf('/silent-renew') !== -1) return <SignInSilentCallback {...{ signInSilentCallback }} />;
 
-      loadUser().then((user) => {
-        if (!user || user.expired) signInRedirect();
-      });
+    //   loadUser().then((user) => {
+    //     if (!user || user.expired) signInRedirect();
+    //   });
 
-      return <AppLoader />;
-    }
+    //   return <AppLoader />;
+    // }
 
     const isMobile = Boolean(isMobileDevice);
-    const {
-      AppStore: {
-        AuthStore: {
-          user: {
-            profile: {
-              role,
-            },
-          },
-        },
-      },
-    } = this.props;
+    // const {
+    //   AppStore: {
+    //     AuthStore: {
+    //       user: {
+    //         profile: {
+    //           role,
+    //         },
+    //       },
+    //     },
+    //   },
+    // } = this.props;
 
     return (
       <Router history={history}>
@@ -128,39 +128,35 @@ class Routes extends Component {
                   <OrderDetails {...{ ...props, isMobile }} />
                 )}
               />
-              {role !== roles.supplier && (
+              <Route
+                exact
+                path="/ocupacao"
+                component={(props) => (
+                  <Occupancy {...{ ...props, isMobile }} />
+                )}
+              />
+              <Switch>
                 <Route
                   exact
-                  path="/ocupacao"
+                  path="/admin/usuarios/detalhes"
                   component={(props) => (
-                    <Occupancy {...{ ...props, isMobile }} />
+                    <UserDetails {...props} />
                   )}
                 />
-              )}
-              {role === roles.admin && (
-                <Switch>
-                  <Route
-                    exact
-                    path="/admin/usuarios/detalhes"
-                    component={(props) => (
-                      <UserDetails {...props} />
-                    )}
-                  />
-                  <Route
-                    exact
-                    path="/admin/cds/detalhes"
-                    component={(props) => (
-                      <WarehouseDetails {...{ ...props, isMobile }} />
-                    )}
-                  />
-                  <Route
-                    path="/admin"
-                    component={(props) => (
-                      <Admin {...{ ...props, isMobile }} />
-                    )}
-                  />
-                </Switch>
-              )}
+                <Route
+                  exact
+                  path="/admin/cds/detalhes"
+                  component={(props) => (
+                    <WarehouseDetails {...{ ...props, isMobile }} />
+                  )}
+                />
+                <Route
+                  path="/admin"
+                  component={(props) => (
+                    <Admin {...{ ...props, isMobile }} />
+                  )}
+                />
+              </Switch>
             </Switch>
           </Layout>
         </Suspense>

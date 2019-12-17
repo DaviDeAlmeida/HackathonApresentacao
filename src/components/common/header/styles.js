@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import colors from '../../../colors';
 
-import logo from './logo.png';
+import logo from './logodelage.png';
 
 const Wrapper = styled.header`
   display: flex;
@@ -21,8 +21,8 @@ const Container = styled.div`
 `;
 
 const Logo = styled.div`
-  width: 180px;
-  height: 50px;
+  width: 480px;
+  height: 10px;
   background-image: url(${logo});
   cursor: pointer;
 `;

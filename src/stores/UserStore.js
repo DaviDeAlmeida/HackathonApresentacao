@@ -14,6 +14,16 @@ class UsersStore {
 
   @observable isLoading = false;
 
+  //graficos
+  @observable lista = '';
+
+  @action setLista = (lista) => {
+    debugger;
+    this.lista = lista;
+  }
+
+
+
   @action loadAll = () => {
     this.isLoading = true;
     getJson(`${API_ROOT}/users`)

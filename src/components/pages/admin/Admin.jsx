@@ -3,10 +3,13 @@ import React, { Component, lazy } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 import { nextTick } from '../../../utils';
 import { pageView } from '../../../analytics';
 import PageLayout from '../../common/layout/pageLayout/PageLayout';
+
+import {observer, inject} from 'mobx-react';
 
 import {
   Menu,
@@ -21,9 +24,41 @@ import {
 const Produtividade = lazy(() => import('./produtividadePorOperador/Produtividade'));
 const TempoMedioResolucao = lazy(() => import('./tempoMedioResolucao/TempoMedioResolucao'));
 
+@inject('AppStore')
+@observer
 class Admin extends Component {
   UNSAFE_componentWillMount = () => { // eslint-disable-line camelcase
     nextTick(pageView);
+  }
+
+  receiveFile = async (e) => {
+    const { AppStore: { UserStore: { setLista } } } = this.props;
+
+    debugger;
+
+    const file = e.target.files[0];
+
+    const formData = new FormData();
+
+    formData.append('file', file);
+
+    const res = await axios.post('https://localhost:44339/api/planilha/uploadplanilha', formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+
+    debugger;
+
+    const dados = Object.keys(res.data.produtividade).map((key) => ({
+      name: key,
+      quantidade: res.data.produtividade[key],
+    }));
+
+    // this.setState({ lista: dados });
+
+    setLista(dados);
+
+    debugger;
+
   }
 
   render() {
@@ -41,6 +76,7 @@ class Admin extends Component {
         <Helmet>
           <title>Hackathon 2019</title>
         </Helmet>
+
         <Menu>
           {/* <MenuItem
             to={`${url}/usuarios`} // Produtividade por operador
@@ -54,6 +90,14 @@ class Admin extends Component {
           >
             Abertura x Resolução
           </MenuItem> */}
+
+<div style={{marginBottom: 20}}>
+<input
+          type="file"
+          onChange={(e) => this.receiveFile(e)}
+        />
+</div>
+
           <MenuItem
             to={`${url}/produtividadeporoperador`} // Produtividade por operador
             selected={pathname === url || pathname === `${url}/produtividadeporoperador`}
@@ -64,27 +108,22 @@ class Admin extends Component {
             to={`${url}/tempomedioresolucao`} // Abertura x Resolução
             selected={pathname === `${url}/tempomedioresolucao`}
           >
-            Abertura x Resolução
+            Tempo médio de resolução
           </MenuItem>
           <MenuItem
             to={`${url}/aberturaxresolucao`}
             selected={pathname === `${url}/aberturaxresolucao`}
           >
-            Tempo médio de resolução
+            Abertura x Resolução
           </MenuItem>
-          <MenuItem
-            to={`${url}/tempomedioresolucao`}
-            selected={pathname === `${url}/tempomedioresolucao`}
-          >
-            Demanda diária
-          </MenuItem>
+
         </Menu>
         <Divider />
         <Content>
           <Switch>
             <Route
               exact
-              path={url}
+              path={`${url}/produtividadeporoperador`}
               component={(props) => (
                 <Produtividade {...props} />
               )}
@@ -102,13 +141,7 @@ class Admin extends Component {
                 <Produtividade {...props} />
               )}
             />
-            <Route
-              exact
-              path={`${url}/cds`}
-              component={(props) => (
-                <Produtividade {...props} />
-              )}
-            />
+
           </Switch>
         </Content>
       </PageLayout>

@@ -23,6 +23,8 @@ import {
 
 const Produtividade = lazy(() => import('./produtividadePorOperador/Produtividade'));
 const TempoMedioResolucao = lazy(() => import('./tempoMedioResolucao/TempoMedioResolucao'));
+const OcorrenciaChamados = lazy(() => import('./ocorrenciaChamados/OcorrenciaChamados'));
+
 
 @inject('AppStore')
 @observer
@@ -138,7 +140,7 @@ class Admin extends Component {
               exact
               path={`${url}/cds`}
               component={(props) => (
-                <Produtividade {...props} />
+                <OcorrenciaChamados {...props} />
               )}
             />
 

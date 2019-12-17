@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
 import { inject, observer } from 'mobx-react';
 import axios from 'axios';
-
 import {
   LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
-} from 'react-chartjs-2';
+} from 'recharts';
+
 import history from '../../../../history';
 import Scrollable from '../../../common/scrollable/Scrollable';
 import AppLoader from '../../../common/appLoader/AppLoader';
+import Card from '../../../common/card/Card';
 
 import {
   Wrapper,
@@ -55,22 +56,26 @@ class Produtividade extends Component {
 
     return (
       <div>
-        {/* <LineChart
-          width={500}
-          height={300}
-          data={this.state.lista && this.state.lista}
-          margin={{
-            top: 5, right: 30, left: 20, bottom: 5,
-          }}
-        >
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Line type="monotone" dataKey="uv" stroke="#8884d8" activeDot={{ r: 8 }} />
-        </LineChart> */}
+        {this.state.lista && (
+          <Card title="Produtividade x Operador">
+            <LineChart
+              width={500}
+              height={300}
+              data={this.state.lista && this.state.lista}
+              margin={{
+                top: 5, right: 30, left: 20, bottom: 5,
+              }}
+            >
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="name" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="uv" stroke="#8884d8" activeDot={{ r: 8 }} />
+            </LineChart>
+          </Card>
 
+        )}
         <input
           ref={(ref) => this.input = ref}
           type="file"
